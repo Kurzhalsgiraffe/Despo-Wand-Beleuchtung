@@ -64,27 +64,16 @@ function updateCell(x,y) {
         // check if mouse is on valid tile and compute the tileNumber from coordinates
         x_coord = x_start/PIXEL_SIZE;
         y_coord = y_start/PIXEL_SIZE;
-        tileNumber = null;
-        if (x_coord == 0) {
-            tileNumber = y_coord;
-        }
-        else if (x_coord == 1 && y_coord > 0) {
-            tileNumber = y_coord + 6;
-        }
-        else if (x_coord == 7 && y_coord > 0) {
-            tileNumber = y_coord + 32;
-        }
-        else if (x_coord == 8) {
-            tileNumber = y_coord + 39;
-        }
-        else if (x_coord > 1 && x_coord < 7 && y_coord > 2) {
-            tileNumber = x_coord * 4 + 2 + y_coord;
-        }
-        if (tileNumber != null) {
+
+        const result = canvasObject.matrix.find(element => {
+            return element[0] == x_coord && element[1] == y_coord;
+          });
+
+        if (result) {
+            tileNumber = result[2];
             if (isMouseDownCanvas) {
                 if(drawMode) {
                     canvasObject.draw(x_start, y_start);
-                    canvasObject.updateGrid(x_start,y_start);
                     canvasObject.colorArray[tileNumber] = canvasObject.c.fillStyle;
                 }
                 else {

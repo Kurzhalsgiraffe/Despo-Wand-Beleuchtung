@@ -10,7 +10,18 @@ class CanvasObject {
         
         if (canvas != null) {
             this.setCanvas(canvas);
-        }       
+        }
+        
+        //(x_coord, y_coord, index)
+        this.matrix = [[0,0,0], [0,1,1], [0,2,2], [0,3,3], [0,4,4], [0,5,5], [0,6,6],
+                        [1,1,7], [1,2,8],[1,3,9], [1,4,10], [1,5,11], [1,6,12],
+                        [2,3,13], [2,4,14], [2,5,15], [2,6,16],
+                        [3,3,17], [3,4,18], [3,5,19], [3,6,20],
+                        [4,3,21], [4,4,22], [4,5,23], [4,6,24],
+                        [5,3,25], [5,4,26], [5,5,27], [5,6,28],
+                        [6,3,29], [6,4,30], [6,5,31], [6,6,32],
+                        [7,1,33], [7,2,34], [7,3,35], [7,4,36], [7,5,37], [7,6,38],
+                        [8,0,39], [8,1,40], [8,2,41], [8,3,42], [8,4,43], [8,5,44], [8,6,45]]
     }
 
     setCanvas(canvas) {
@@ -24,17 +35,13 @@ class CanvasObject {
     }
 
     drawColorArrayToCanvas() {
-        for (let i=0; i<256; i++) {
-            this.c.fillStyle = this.colorArray[i];
-            let y = Math.floor(i/16);
-            let x;
-    
-            if (y%2==0) {
-                x = 15-i%16;
-            } else {
-                x = i%16;
-            }
-            this.draw(this.PIXEL_SIZE*x, this.PIXEL_SIZE*y);
+        for (let tuple of this.matrix) {
+            let x_coord = tuple[0]
+            let y_coord = tuple[1]
+            let index = tuple[2]
+            this.c.fillStyle = this.colorArray[index];
+
+            this.draw(this.PIXEL_SIZE*x_coord, this.PIXEL_SIZE*y_coord);
         }
         this.drawGrid();
     }
@@ -45,6 +52,7 @@ class CanvasObject {
         this.c.rect(x_start, y_start, this.PIXEL_SIZE, this.PIXEL_SIZE);
         this.c.fill();
         this.c.stroke();
+        this.updateGrid(x_start,y_start);
     }
 
     initializeColorArray() {
@@ -54,10 +62,11 @@ class CanvasObject {
     }
 
     drawGrid() {
-        for (let x=0; x<this.FRAME_WIDTH; x+=this.PIXEL_SIZE) {
-            for (let y=0; y<this.FRAME_HEIGHT; y+=this.PIXEL_SIZE) {
-                this.updateGrid(x,y);
-            }
+        for (let tuple of this.matrix) {
+            let x_coord = tuple[0]
+            let y_coord = tuple[1]
+            
+            this.updateGrid(x_coord*this.PIXEL_SIZE, y_coord*this.PIXEL_SIZE);
         }
     }
 
