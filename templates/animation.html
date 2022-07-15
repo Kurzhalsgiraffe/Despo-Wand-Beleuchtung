@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>GameFrameZero</title>
+</head>
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pt-lg-3">
+        <div class="container">
+            <a class="navbar-brand fs-3 fw-bold" href="/"><i class="fa-solid fa-lightbulb mx-2"></i>GameFrame<span class="limegreen">Zero</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2">
+                    <li class="nav-item mx-lg-2">
+                    <a class="nav-link text-white" href="/">ZEICHNEN</a>
+                    </li>
+                    <li class="nav-item mx-lg-2">
+                        <a class="nav-link text-white active" href="images">BILDER</a>
+                    </li>
+                    <li class="nav-item mx-lg-2">
+                        <a class="nav-link text-white" href="#">ANIMATIONEN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navigation END -->
+
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+
+            <!-- Sidebar-->
+
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center  px-3 pt-2 text-white min-vh-100">
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center">
+                        <li class="mb-2 mt-4">
+                            <span class="fs-6 fw-bold">OPTIONEN</span>
+                        </li>
+                        <li>
+                            <button class="button opt-btn my-2" id="start-animation-btn" data-bs-toggle="tooltip" data-bs-placement="right" title="Starte die Animation auf der Matrix"><strong>START</strong></button>
+                        </li>
+                        <li>
+                            <button class="button opt-btn my-2" id="stop-animation-btn" data-bs-toggle="tooltip" data-bs-placement="right" title="Stoppe die Animation"><strong>STOP</strong></button>
+                        </li>
+                        <li class="mb-2 mt-5">
+                            <span class="fs-6 fw-bold">VERWALTEN</span>
+                        </li>
+                        <li>
+                            <input class="mb-2 animation-input" type="text" placeholder="NAME" id="animation-name">
+                        </li>
+                        <li>
+                            <button class="button opt-btn mt-1 mb-3" id="create-animation-btn" data-bs-toggle="tooltip" data-bs-placement="right" title="Erstelle eine neue Animation"><strong>ERSTELLEN</strong></button>
+                        </li>
+                        <li>
+                            <button class="button opt-btn my-2" id="edit-animation-btn" data-bs-toggle="tooltip" data-bs-placement="right" title="Bearbeite die ausgewählte Animation"><strong>BEARBEITEN</strong></button>
+                        </li>
+                        <li>
+                            <button class="button opt-btn my-2" id="delete-animation-btn" data-bs-toggle="tooltip" data-bs-placement="right" title="Lösche die ausgewählte Animation"><strong>LÖSCHEN</strong></button>
+                        </li>
+                        <li class="mb-2 mt-4">
+                            <span class="fs-6 fw-bold">HELLIGKEIT</span>
+                        </li>
+                        <li>
+                            <div class="d-flex justify-content-center mb-2">                             
+                                <span id="brightness-value">1</span>
+                            </div>
+                            <div class="slidecontainer">
+                                <input type="range" min="1" max="80" value="1" class="slider" id="brightness-slider">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sidebar END -->
+            <div class="col py-3 d-flex justify-content-evenly my-auto">
+                <div class="row col-lg-8 g-4" id="tile-body"></div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="{{ url_for('static', filename='js/canvas.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/frametiles.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animation_page.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/brightness.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
